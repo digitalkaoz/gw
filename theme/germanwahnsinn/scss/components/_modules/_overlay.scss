@@ -1,0 +1,164 @@
+.overlay {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    z-index: 500;
+
+    box-sizing: border-box;
+    padding: 50px 24px;
+    width: 100%;
+    min-height: calc(100% - 70px);
+
+    color: #ffffff;
+
+    &.is-open {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    @media (min-width: 568px) {
+        padding: 10px $content-landscape;
+    }
+
+    @media (min-width: 768px) {
+        padding: 150px $content-tablet 10px;
+        top: 90px;
+        min-height: 500px;
+    }
+
+    @media (min-width: 1024px) {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        max-width: 80%;
+        min-width: 600px;
+        min-height: 100%;
+        padding: 150px 80px 30px;
+
+        background-color: rgba($color-highlight, .93);
+    }
+
+    @media (min-width: 1024px) {
+        max-width: 80%;
+        min-width: 55%;
+    }
+
+    .headline {
+        border-bottom: 1px solid #ffffff;
+        padding: 0 0 2px 0;
+        margin: 0 0 10px 0;
+    }
+
+    // @TODO Overlay größen verhalten
+    /******
+    * Verhalten von größe, text, video
+    * bis 1024px wächst das overlay mit und ist scrollbar (nicht pos:fix)
+    * ab 1024px bestimmt der content die breite des overlays - je mehr text,
+    * desto kleiner das video und schmaler der overlay (abstände links und recht sind immer fix)
+    * video behält ihre ratio
+    *********/
+
+    // @TODO video ratio
+    // kann die ratio frei gewählt werden - testen, möglich über api?
+
+
+    .video {
+        position: relative;
+        width: 100%;
+        padding: 56.25% 0 0 0;
+
+        margin: 0 0 8px 0;
+
+
+        @media (min-width: 1024px) {
+            margin-bottom: 40px;
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .main & {
+        @media (max-width: 1023px) {
+            display: block;
+            position: relative;
+            top: 0;
+            z-index: 0;
+            width: auto;
+            min-height: 100px;
+            padding-top: 40px;
+            margin: 0 ($content-mobile * -1);
+
+            &.overlay-even {
+                color: #000000;
+
+                &:after {
+                    background-color: #ffffff;
+                }
+            }
+        }
+
+        @media (min-width: 568px) {
+            margin: 0 ($content-landscape * -1);
+        }
+
+        @media (min-width: 1024px) {
+            position: fixed;
+            margin: 0;
+            min-width: 600px;
+        }
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -5%;
+        z-index: -1;
+        width: 110%;
+        height: 100%;
+        background-color: rgba($color-highlight, .93);
+
+        transform: rotate(-3deg);
+
+        @media (min-width: 1024px) {
+            display: none;
+        }
+    }
+
+    .content {
+        text-align: left;
+        flex: 1;
+    }
+
+    .close {
+        width: 42px;
+        height: 42px;
+        margin-right: -12px;
+        margin-left: auto;
+
+        .main & {
+            display: none;
+
+            @media (min-width: 1024px) {
+                display: block;
+            }
+        }
+    }
+}
+
+
+.overlay-video {
+    &.is-open {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}

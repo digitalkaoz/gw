@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+{% spaceless %}
+{# --- attempt to get the language from the URL --- #}
+{% if app.canonicalpath %}
+{% set languageslug = app.canonicalpath|split('/')[1] %}
+{% else %}
+{% set languageslug = app.paths.current|split('/')[1] %}
+{% endif %}
+
+{# --- set the language, otherwise fallback to default language --- #}
+{% if languageslug in ['en', 'de'] %}
+{% set language = languageslug %}
+{% else %}
+{% set language = 'de' %}
+{% endif %}
+
+{% set pagescontenttype      = language ~ '-pages' %}
+{% set entriescontenttype    = language ~ '-entries' %}
+{% set menumain              = language ~ '-main' %}
+
+{% endspaceless %}
+<html class="no-js" lang="{{ language }}">
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {# make sure we always display a proper title: The record's title if there is one, appended with the
+    sitename. If there is no title, we append the sitename with the payoff, if there is one. #}
+    <title>
+        {% if record.title is defined %}{{ record.title|striptags }} | {% endif %}
+        {{ app.config.get('general/sitename') }}
+        {% if record.title is not defined and app.config.get('general/payoff') %} | {{ app.config.get('general/payoff') }}{% endif %}
+    </title>
+
+    <link rel="stylesheet" href="{{ paths.theme }}css/main.css">
+
+    <script src="{{ paths.theme }}js/lib/modernizr-custom.js"></script>
+</head>
+<body >
+
+{% include '_sprite.svg.twig' %}
+{% include '_logo.svg.twig' %}
+
+<!-- @TODO loop video wenn intro fertig ist - auf allen Seiten -->
+<!-- Main Blog Content -->
+<div class="background-wrapper">
+    <video class="background-video js-video" preload="auto" width="100%" height="auto" data-video-url="{{ record.background_video }}"></video>
+    <div class="video-controls js-toggle-video">
+        <svg viewBox="0 0 50 50" class="icon video-pause">
+            <use xlink:href="#pause"></use>
+        </svg>
+        <svg viewBox="0 0 50 50" class="icon video-play">
+            <use xlink:href="#play"></use>
+        </svg>
+    </div>
+</div>
+
+<div class="page-wrapper">
+    <header class="header">
+        <a href="{{ paths.root }}" class="logo">
+            <svg viewBox="0 0 175 61" class="logo-plain">
+                <use xlink:href="#gw_logo"></use>
+            </svg>
+            <svg viewBox="0 0 175 61" class="logo-hover">
+                <use xlink:href="#gw_logo_mouseover"></use>
+            </svg>
+        </a>
+        <button class="menu nav-button">
+            <svg viewBox="0 0 50 50" class="icon">
+                <use xlink:href="#burger"></use>
+            </svg>
+        </button>
+        <button class="close close-nav nav-button">
+            <svg viewBox="0 0 50 50" class="icon">
+                <use xlink:href="#x"></use>
+            </svg>
+        </button>
+        <nav class="nav-container promote-layer">
+            <ul class="nav main-nav">
+                {{ menu(menumain, '_sub_menu.twig') }}
+            </ul>
+        </nav>
+    </header>
+    <div class="app-bar"></div>
+
+<!-- Main Page Content and Sidebar -->
+{% block main %} {% endblock %}
+
+<!-- End Main Content -->
+
+
+<!-- Footer -->
+
+</div>
+<div class="language">
+    {% set relatedrecords = record.related() %}
+
+    {% if relatedrecords['en-pages'] is not empty %}
+    <a href="{{ relatedrecords['en-pages'].link }}">English</a>
+    {% else %}
+    <a href="/en">English</a>
+    {% endif %}
+    |
+    {% if relatedrecords['nl-pages'] is not empty %}
+    <a href="{{ relatedrecords['de-pages'].link }}">Nederlands</a>
+    {% else %}
+    <a href="/de">Deutsch</a>
+    {% endif %}
+</div>
+
+<div class="social-wrapper">
+    <a href="https://twitter.com/GermanWahnsinn" target="_blank" class="twitter">
+        <svg viewBox="0 0 50 50" class="icon">
+            <use xlink:href="#twitter"></use>
+        </svg>
+        Brandaktuelles
+    </a>
+</div>
+
+<script src="{{ paths.theme }}js/lib/jquery-2.1.4.min.js"></script>
+<script src="{{ paths.theme }}js/main-build.js"></script>
+
+<script src="{{ paths.theme }}js/tsunami/utils/Debug.js"></script>
+<script src="{{ paths.theme }}js/tsunami/geom/Rectangle.js"></script>
+<script src="{{ paths.theme }}js/tsunami/geom/Point.js"></script>
+<script src="{{ paths.theme }}js/tsunami/geom/Ratio.js"></script>
+<script src="{{ paths.theme }}js/tsunami/filters/Blendmode.js"></script>
+<script src="{{ paths.theme }}js/tsunami/filters/ColorHalftoneFilter.js"></script>
+<script src="{{ paths.theme }}js/tsunami/halftone.js"></script>
+
+
+
+</body>
+</html>

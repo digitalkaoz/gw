@@ -1,0 +1,123 @@
+.video-controls {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    width: 50px;
+    height: 50px;
+
+    @media (min-width: 1024px){
+        display: block;
+    }
+}
+
+.video-pause {
+    display: block;
+}
+
+.video-play {
+    .is-pause & {
+        display: block;
+    }
+}
+
+.video-pause {
+    .is-pause & {
+        display: none;
+    }
+}
+
+.background-wrapper {
+    @media (min-width: 1920px) {
+        &:before,
+        &:after {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            width: 50%;
+            z-index: 1;
+        }
+
+        &:before {
+            left: 0;
+            content: '';
+            width: calc((100% - 1365px) / 2);
+            background: url("../video_left.jpg") right top;
+            height: 55px;
+            background-size: auto 100%;
+        }
+
+        &:after {
+            right: 0;
+            content: '';
+            width: calc((100% - 1365px) / 2);
+            background: url("../video_right.jpg") left top;
+            height: 55px;
+            background-size: auto 100%;
+        }
+    }
+}
+
+.background-video {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    width: 115%;
+    max-width: 1920px;
+
+    @media (min-width: 1024px) {
+        display: block;
+        opacity: 0;
+        transition: opacity .25s ease;
+
+        &.is-loaded {
+            opacity: 1;
+        }
+    }
+
+    @media (min-width: 1356px) {
+        width: 100%;
+    }
+
+    @media (min-width: 1920px) {
+        width: 1920px;
+        left: 50%;
+        margin-left: -960px;
+    }
+}
+
+
+.video {
+    position: relative;
+
+    .teaser-wrapper & {
+        width: 100%;
+
+        @media (min-width: 1024px) {
+            width: 350px;
+            height: 196px;
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.intro-video {
+    @media (max-width: 536px) {
+        width: 100%;
+
+        iframe {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+
+}

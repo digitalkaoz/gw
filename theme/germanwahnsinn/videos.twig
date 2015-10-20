@@ -1,0 +1,43 @@
+{% extends "master.twig" %}
+
+{% block main %}
+    <main class="main">
+        <div class="video-wrapper teaser-wrapper">
+            {% for video in vimeoapi.videoGroup(record.group_id) %}
+                <a href="#" class="js-open-overlay teaser" data-overlay="{{ related.id }}" >
+                    <img src="{{ video['pictures']['sizes'][2]['link'] }}" class="teaser-image--first">
+
+                    <canvas class="halftone"></canvas>
+
+                    <div class="teaser-rollover">
+                        {% for videoImage in vimeoapi.videoImages(video['uri']) %}
+                            <img src="{{ videoImage }}" class="teaser-image">
+                        {% endfor %}
+                    </div>
+
+                    <h3 class="teaser-headline"><span class="text-shadow">{{ video['name'] }}</span></h3>
+
+                </a>
+            {% endfor %}
+        </div>
+    </main>
+    {% for video in vimeoapi.videoGroup(record.group_id) %}
+    <div class="overlay js-overlay js-overlay-{{ related.id }}">
+        <button class="close close-overlay js-close-overlay">
+            <svg viewBox="0 0 50 50" class="icon">
+                <use xlink:href="#x"></use>
+            </svg>
+        </button>
+        <div class="video">
+
+            {{ video['embed']['html']|raw }}
+        </div>
+        <div class="content">
+            <div class="headline">{{ video['name'] }}</div>
+
+            {{ video['description'] }}
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}

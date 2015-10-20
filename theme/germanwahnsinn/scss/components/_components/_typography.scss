@@ -1,0 +1,83 @@
+/**
+*
+* Typography
+*
+**/
+
+// Just normalizing text
+// Recommend using padding instead of margin
+h1, h2, h3, h4, h5, p {
+    margin: 0;
+}
+
+// Definitions
+.small,
+small {
+    font-size: 50%;
+}
+
+.base,
+p {
+    .overlay &,
+    .main & {
+        font-size: $fz-text-mobile;
+        line-height: $lh-text-mobile;
+
+        @media (min-width: 768px) {
+            font-size: $fz-text-tablet;
+        }
+
+        @media (min-width: 1024px) {
+            font-size: $fz-text-desktop;
+        }
+    }
+
+
+    .main & {
+        margin: 0 0 1em 0;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+        .social-wrapper &,
+        .main & {
+            color: $color-highlight;
+        }
+
+        .icon {
+            fill: $color-highlight;
+        }
+    }
+
+    .text & {
+        display: inline-block;
+        padding: 0.1em 0;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+
+.headline {
+    text-transform: uppercase;
+    font-size: $fz-headline-mobile;
+    font-weight: 900;
+
+    @media (min-width: 768px) {
+        font-size: $fz-headline-tablet;
+    }
+    @media (min-width: 1024px) {
+        font-size: $fz-headline-desktop;
+    }
+}

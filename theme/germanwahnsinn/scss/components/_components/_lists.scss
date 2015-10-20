@@ -1,0 +1,59 @@
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    ul {
+        margin: 0 0 1em 0;
+
+        @media all and (min-width: 568px) {
+            columns: 2;
+        }
+
+        @media all and (min-width: 1024px) {
+            columns: 1;
+        }
+    }
+
+    li {
+        list-style: none;
+        @extend %arrow;
+
+        @media all and (min-width: 568px) {
+            display: inline-block;
+            vertical-align: top;
+            width: 100%;
+        }
+    }
+}
+
+.no-csscolumns {
+    .main {
+        li {
+            @media all and (min-width: 568px) {
+                display: inline-block;
+                width: 49%;
+                vertical-align: top;
+            }
+
+            @media (min-width: 1024px) {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.text-open-overlay {
+
+    .text & {
+        display: none;
+
+        @extend %arrow;
+
+        @media (min-width: 1024px) {
+            display: block;
+        }
+    }
+
+}

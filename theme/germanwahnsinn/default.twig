@@ -1,0 +1,15 @@
+{% extends "master.twig" %}
+
+{% block main %}
+<main class="main">
+    <div class="text">
+        {% if record is defined %}
+        {% set home = record %}
+
+        {% if home.body is not empty %}
+        {{ home.body }}
+        {% endif %}
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

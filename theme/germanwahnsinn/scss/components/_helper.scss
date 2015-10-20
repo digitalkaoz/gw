@@ -1,0 +1,65 @@
+/**
+*
+* Helper
+*
+**/
+
+.clear {
+    &::before,
+    &::after {
+        content: '';
+        display: table;
+    }
+    &::after {
+        clear: both;
+    }
+}
+
+/*==========  COLORS  ==========*/
+
+/*==========  TEXT DIVIDER  ==========*/
+
+/*==========  Arrow before Text  ==========*/
+%arrow {
+    position: relative;
+    padding: 0 0 .5em 1.25em;
+
+    text-transform: uppercase;
+    font-size: $fz-list-mobile;
+    font-weight: 700;
+
+
+    @media (min-width: 768px) {
+        font-size: $fz-list-tablet;
+    }
+
+    @media (min-width: 1024px) {
+        font-size: $fz-list-desktop;
+    }
+
+    &:before {
+        content: '▶';
+        position: absolute;
+        top: 0.2em;
+        left: 0;
+        font-size: .8em;
+        color: $color-highlight;
+    }
+}
+
+/*==========  GENERIC  ==========*/
+.centered {
+    text-align: center;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.is-hidden {
+    position: absolute;
+    height: 0;
+    width: 0;
+}
+
+/*==========  TAG  ==========*/

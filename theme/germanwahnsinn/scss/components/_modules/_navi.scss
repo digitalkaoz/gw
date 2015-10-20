@@ -1,0 +1,183 @@
+.nav-container {
+    position: fixed;
+    top: -2.5%;
+    right: 0;
+    bottom: 0;
+    z-index: 800;
+
+    width: 250px;
+    height: 105%;
+
+    background-color: rgba($color-highlight, .93);
+
+    transform: translate(110%, 0) rotate(2.5deg);
+    transform-origin: 50% 50%;
+
+    transition: transform .5s ease-out;
+
+    @media (min-width: 568px) {
+        top: -7.5%;
+
+        width: 80%;
+        height: 115%;
+    }
+
+    .nav-open & {
+        transform: translate(50px,0) rotate(-5deg);;
+    }
+
+    a {
+        display: block;
+
+        padding: 12px 36px;
+        text-decoration: none;
+        color: #ffffff;
+        white-space: nowrap;
+
+        @media all and (min-width: $navi-fullsize) {
+            color: #000000;
+            padding: 6px;
+        }
+
+        @media all and (min-width: 1024px) {
+            padding: 10px;
+        }
+
+        &:hover {
+            font-weight: 900;
+        }
+
+        &:after {
+            display: block;
+            content: attr(title);
+            font-weight: 900;
+            height: 1px;
+            color: transparent;
+            overflow: hidden;
+            visibility: hidden;
+            margin-bottom: -1px;
+        }
+    }
+
+    .active {
+        a {
+            font-weight: 900;
+        }
+    }
+}
+
+.nav {
+    padding: 110px 0 0 0;
+
+    @media (min-width: 568px) {
+        width: $navi-width-landscape;
+        columns: 2;
+    }
+}
+
+.nav-item {
+    font-size: $fz-menu-mobile;
+    font-weight: 700;
+
+    @media (min-width: 568px) {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    @media (min-width: 768px) {
+        font-size: $fz-menu-tablet;
+    }
+
+    @media (min-width: 1024px) {
+        font-size: $fz-menu-desktop;
+    }
+}
+
+.close-nav {
+    display: none;
+
+    z-index: 1000;
+    opacity: 0;
+
+    .nav-open & {
+        display: block;
+
+        opacity: 1;
+
+        transition: opacity .35s ease .15s;
+    }
+}
+
+
+/** Navigation fullsize (not behind burgermenu) **/
+@media all and (min-width: $navi-fullsize) {
+    .nav-container {
+        top: auto;
+        position: relative;
+        background: transparent;
+        width: 100%;
+        height: auto;
+        margin-top: 0;
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+        -webkit-transition: none;
+        transition: none;
+        overflow-y: auto;
+    }
+
+    .nav {
+        padding-top: 25px;
+        display: inline-block;
+        width: auto;
+        columns: 1;
+    }
+
+    .nav-item {
+        display: inline-block;
+
+        &:first-child {
+            a {
+                padding-left: 0;
+            }
+        }
+
+        &:last-child {
+            a {
+                padding-right: 0;
+            }
+        }
+    }
+
+    .beside {
+        padding-left: 10px;
+    }
+
+    .close-nav {
+        display: none;
+    }
+}
+
+
+@media all and (min-width: 1024px) {
+    .nav-container {
+        width: auto;
+    }
+
+    .nav {
+        display: inline-block;
+        width: auto;
+        padding-top: 10px;
+    }
+
+    .besdie {
+        padding-left: 15px;
+    }
+}
+
+
+@media all and (min-width: 1024px) {
+    .nav-container {
+        padding-left: 70px;
+    }
+
+}

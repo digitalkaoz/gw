@@ -1,0 +1,164 @@
+.header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+
+    box-sizing: border-box;
+}
+
+.logo {
+    display: block;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    z-index: 1000;
+    height: 61px;
+    width: 175px;
+
+    .logo-plain,
+    .logo-hover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        transition: opacity .35s ease-out;
+    }
+
+    .logo-plain {
+        opacity: 1;
+    }
+
+    .logo-hover {
+        opacity: 0;
+    }
+
+    &:hover {
+        .logo-plain {
+            opacity: 0;
+        }
+
+        .logo-hover {
+            opacity: 1;
+        }
+    }
+
+    @media (min-width: 568px) {
+        left: 33px;
+    }
+
+    @media all and (min-width: $navi-fullsize) {
+        position: relative;
+        left: auto;
+        top: auto;
+        padding-top: 30px;
+        margin-left: -40px;
+    }
+
+    @media (min-width: 768px) {
+        height: 94px;
+        width: 268px;
+    }
+
+    @media (min-width: 1024px) {
+        height: 56px;
+        width: 160px;
+    }
+}
+
+.nav-button {
+    position: absolute;
+    right: 24px;
+    top: 42px;
+    z-index: 700;
+    width: 42px;
+    height: 42px;
+    display: inline-block;
+    -webkit-transition: background-color 0.2s ease-out;
+    transition: background-color 0.2s ease-out;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.app-bar {
+    display: block;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    height: 87px;
+
+    &:after {
+        position: absolute;
+        top: -20px;
+        left: -1%;
+        content: '';
+        height: 120px;
+        background-color: #ffffff;
+        transform: rotate(-4deg);
+        width: 102%;
+
+        @media (min-width: 900px) {
+            display: none;
+        }
+    }
+}
+
+
+/** Navigation fullsize (not behind burgermenu) **/
+@media all and (min-width: $navi-fullsize) {
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: $navi-top-tablet 0 0 $content-tablet;
+        z-index: 2000;
+    }
+
+    .app-bar {
+        height: 225px;
+        background-color: #ffffff;
+        z-index: 300;
+    }
+
+    .logo {
+        float: left;
+        margin: 0;
+        padding: 0;
+        line-height: 130px;
+        font-size: 46px;
+    }
+
+    .app-bar-actions {
+        float: right;
+    }
+
+    .menu {
+        display: none;
+    }
+}
+
+@media (min-width: 1024px) {
+    .header {
+        background: transparent;
+        padding-left: $outerspace-desktop;
+    }
+
+    .app-bar {
+        height: 114px;
+    }
+}
+
+.header {
+    @media all and (min-width: 1356px) {
+        padding-left: $outerspace-1356;
+        padding-right: $outerspace-1356;
+    }
+
+    @media all and (min-width: 1440px) {
+        padding-left: $outerspace-1440;
+        padding-right: $outerspace-1440;
+    }
+}

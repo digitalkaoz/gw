@@ -1,0 +1,6 @@
+1445351088
+a:1:{s:11:"information";O:8:"stdClass":11:{s:2:"id";s:2:"38";s:4:"slug";s:18:"bolt-2213-released";s:11:"datecreated";s:19:"2015-10-07 18:18:32";s:11:"datechanged";s:19:"2015-10-07 18:18:32";s:8:"username";s:0:"";s:6:"status";s:9:"published";s:5:"title";s:21:"Bolt 2.2.13 released.";s:6:"teaser";s:505:"<p>We've just released Bolt 2.2.13 as an ongoing maintenance release. This update contains a few new features and some bugfixes. There are no security-related issues in this release, so if you're superstitious and you feel a bit anxious about the '13' in the version number, there's no harm in waiting for the next update. ;-)
+
+</p>
+
+<p>More details about the update and instructions on upgrading can be found here: <a href="https://bolt.cm/newsitem/bolt-2-2-13-released">Bolt 2.2.13 released.</a></p>";s:4:"link";s:45:"https://bolt.cm/newsitem/bolt-2-2-13-released";s:4:"type";s:4:"news";s:14:"target_version";s:0:"";}}
