@@ -28,7 +28,7 @@ class Extension extends BaseExtension
 
     public function videoGroup($groupID)
     {
-        $key = __DIR__.'/cache/group_'.$groupID.'.json';
+        $key = '/cache/group_'.$groupID.'.json';
 
         $response = $this->getCache($key);
 
@@ -42,7 +42,7 @@ class Extension extends BaseExtension
 
     public function videoTitle($groupID)
     {
-        $key = __DIR__.'/cache/title_'.$groupID.'.json';
+        $key = '/cache/title_'.$groupID.'.json';
 
         $response = $this->getCache($key);
 
@@ -56,7 +56,7 @@ class Extension extends BaseExtension
 
     public function videoImages($videoId)
     {
-        $key = __DIR__.'/cache/images_'.$videoId.'.json';
+        $key = '/cache/images_'.$videoId.'.json';
 
         $response = $this->getCache($key);
 
@@ -80,8 +80,8 @@ class Extension extends BaseExtension
 
     private function getCache($key)
     {
-        if (file_exists($key)) {
-            return json_decode(file_get_contents($key), true);
+        if (file_exists(sys_get_temp_dir().$key)) {
+            return json_decode(file_get_contents(sys_get_temp_dir().$key), true);
         }
 
         return false;
@@ -89,10 +89,10 @@ class Extension extends BaseExtension
 
     private function putCache($key, $data)
     {
-        if (!is_writable(pathinfo($key, PATHINFO_DIRNAME))) {
-            mkdir(pathinfo($key, PATHINFO_DIRNAME), null, true);
+        if (!is_writable(pathinfo(sys_get_temp_dir().$key, PATHINFO_DIRNAME))) {
+            mkdir(pathinfo(sys_get_temp_dir().$key, PATHINFO_DIRNAME), null, true);
         }
 
-        file_put_contents($key, json_encode($data));
+        file_put_contents(sys_get_temp_dir().$key, json_encode($data));
     }
 }
