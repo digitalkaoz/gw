@@ -81,7 +81,7 @@ class Extension extends BaseExtension
     private function getCache($key)
     {
         if (file_exists($key)) {
-            return json_decode(file_get_contents($key));
+            return json_decode(file_get_contents($key), true);
         }
 
         return false;
